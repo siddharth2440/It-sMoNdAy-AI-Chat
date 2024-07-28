@@ -1,0 +1,72 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+.textGradient{
+  background: linear-gradient(to right, #217bfe, #e55571);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+
+.borBg{
+  background-image: url("/bg.png");
+  /* opacity: 0.2; */
+  /* width: 200%; */
+  /* height: 100%; */
+  background-size: auto 100%;
+  animation: 10s linear infinite botAnimation;
+}
+
+@keyframes botAnimation{
+
+  0% {
+    scale: 0;
+    transform: rotate(-30deg);
+  }
+  100% {
+    scale: 1.3;
+    transform: rotate(30deg);
+  }
+
+}
+
+
+.orbital{
+  animation: 100s linear infinite rotateOrbital;
+}
+
+@keyframes rotateOrbital {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(60deg);
+  }
+}
+
+
+.bgBot{
+  animation: 100s ease-in-out infinite bgBotAni;
+}
+
+@keyframes bgBotAni {
+  0% {
+    scale: 1;
+    transform: transformX(180deg);
+  }
+  100% {
+    scale: 1.3;
+    transform: transformX(-180deg);
+  }
+}
+
+
+.message-ai{
+  self:start;
+}
+
+.message-user{
+  align-self:end;
+}
