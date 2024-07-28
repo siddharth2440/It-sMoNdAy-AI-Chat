@@ -12,7 +12,7 @@ const DashBoard = () => {
     const [answer,setAnswer] = useState("")
     
     const [img, setImg] = useState({
-        // isLoading: false,
+        isLoading: false,
         error: "",
         dbData: {},
         aiData: {},
@@ -50,19 +50,10 @@ const DashBoard = () => {
           let accumulatedText = "";
           for await (const chunk of result.stream) {
             const chunkText = chunk.text();
-            console.log(chunkText);
+            // console.log(chunkText);
             accumulatedText += chunkText;
             setAnswer(accumulatedText);
           }
-        // const result = await chat.sendMessageStream(
-        //     Object.entries(img.aiData).length ? [img.aiData, text] : [text]
-        // );
-        // let textAccum = '';
-        // for await (const chunk of result.stream) {
-        //     const chunkText = chunk.text();
-        //     textAccum += chunkText;
-        //     setAnswer(textAccum)
-        // }
     }
 
     const handleSubmit = (e) => {
@@ -72,32 +63,19 @@ const DashBoard = () => {
         if(!text) return;
         setQuestion(text);
         add(text);
+        setImg({
+            isLoading: false,
+            error: "",
+            dbData: {},
+            aiData: {},
+          })
         return;
     }
   return (
     <DashboardLayout>
-        <Box className="bg-[#11101C] w-[100%] lg:w-[70%] mx-auto px-3 lg:py-4 pb-[3rem] lg:h-[80vh] relative">
+        <Box className="bg-[#11101C] w-[100%] lg:w-[70%] mx-auto px-3 lg:py-4 pb-[3rem] h-[80vh] relative">
             {/* <h1 className='text-white'>Hello Worl I Me and Okay Varun is going to be great One Day myself</h1> */}
             <Box className="flex flex-col gap-2 px-2 items-start justify-start overflow-auto py-10 h-[100%] text-white w-[90%] m-auto">
-
-                {/* <Typography className="message-ai bg-[#272734] lg:px-4 lg:py-2 px-2 py-2 text-[0.7rem] rounded-lg">Message from AI</Typography>
-                <Typography className="message-user bg-[#272734] lg:px-4 lg:py-2 px-2 py-2 text-[0.7rem] rounded-lg">Message from User</Typography>
-                <Typography className="message-ai bg-[#272734] lg:px-4 lg:py-2 px-2 py-2 text-[0.7rem] rounded-lg">Message from AI</Typography>
-                <Typography className="message-user bg-[#272734] lg:px-4 lg:py-2 px-2 py-2 text-[0.7rem] rounded-lg">Message from User</Typography>
-                <Typography className="message-ai bg-[#272734] lg:px-4 lg:py-2 px-2 py-2 text-[0.7rem] rounded-lg">Message from AI</Typography>
-                <Typography className="message-user bg-[#272734] lg:px-4 lg:py-2 px-2 py-2 text-[0.7rem] rounded-lg">Message from User</Typography>
-                <Typography className="message-ai bg-[#272734] lg:px-4 lg:py-2 px-2 py-2 text-[0.7rem] rounded-lg">Message from AI</Typography>
-                <Typography className="message-user bg-[#272734] lg:px-4 lg:py-2 px-2 py-2 text-[0.7rem] rounded-lg">Message from User</Typography>
-                <Typography className="message-ai bg-[#272734] lg:px-4 lg:py-2 px-2 py-2 text-[0.7rem] rounded-lg">Message from AI</Typography>
-                <Typography className="message-ai bg-[#272734] lg:px-4 lg:py-2 px-2 py-2 text-[0.7rem] rounded-lg">Message from AI</Typography>
-                <Typography className="message-ai bg-[#272734] lg:px-4 lg:py-2 px-2 py-2 text-[0.7rem] rounded-lg">Message from AI</Typography>
-                <Typography className="message-user bg-[#272734] lg:px-4 lg:py-2 px-2 py-2 text-[0.7rem] rounded-lg">Message from User</Typography>
-                <Typography className="message-ai bg-[#272734] lg:px-4 lg:py-2 px-2 py-2 text-[0.7rem] rounded-lg">Message from AI</Typography>
-                <Typography className="message-user bg-[#272734] lg:px-4 lg:py-2 px-2 py-2 text-[0.7rem] rounded-lg">Message from User</Typography>
-                <Typography className="message-ai bg-[#272734] lg:px-4 lg:py-2 px-2 py-2 text-[0.7rem] rounded-lg">Message from AI</Typography>
-                <Typography className="message-user bg-[#272734] lg:px-4 lg:py-2 px-2 py-2 text-[0.7rem] rounded-lg">Message from User</Typography>
-                <Typography className="message-ai bg-[#272734] lg:px-4 lg:py-2 px-2 py-2 text-[0.7rem] rounded-lg">Message from AI</Typography>
-                <Typography className="message-ai bg-[#272734] lg:px-4 lg:py-2 px-2 py-2 text-[0.7rem] rounded-lg">Message from AI</Typography> */}
                 {
                     img.dbData?.filePath && (
                         <IKImage
@@ -108,6 +86,11 @@ const DashBoard = () => {
                             className='message-user'
                         />
                 )}
+                {
+                    img.isLoading && (
+                        <CircularProgress className='message-user'/>
+                    )
+                }
                 {
                     question && (
                         <Typography className="message-user bg-[#272734] lg:px-4 lg:py-2 px-2 py-2 text-[0.7rem] rounded-lg">{question}</Typography>

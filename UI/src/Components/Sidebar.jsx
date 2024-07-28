@@ -19,9 +19,9 @@ const Sidebar = () => {
         <Typography className='text-white underline mt-3 lg:mt-5 lg:w-[15vw] text-[0.9rem] lg:text-[1.1rem] lg:font-[500]'>Recent Chats</Typography>
         <Box className="flex flex-col items-start justify-start gap-2 py-1 w-[100%]">
             {
-                dummyChats.length > 0 ? dummyChats.map((ele)=> {
+                dummyChats.length > 0 ? dummyChats.map((ele,idx)=> {
                     return (
-                        <Typography key={ele+1} className='hover:bg-[#272728] transition-all duration-150 delay-75 ease-in-out py-1 text-white text-[0.6rem] w-[100%] px-4 rounded-sm cursor-pointer'>Dummy Chat</Typography>        
+                        <Typography key={idx+1} className='hover:bg-[#272728] transition-all duration-150 delay-75 ease-in-out py-1 text-white text-[0.6rem] w-[100%] px-4 rounded-sm cursor-pointer'>Dummy Chat</Typography>        
                     )
                 }) : (
                     <Typography>Get Started with a new chat</Typography>

@@ -27,7 +27,7 @@ const Upload = ({setImage}) => {
       };
       
       const onSuccess = res => {
-        setImage(prev=>({...prev,dbData:res}))
+        setImage(prev=>({...prev,isLoading:false,dbData:res}))
         console.log("Success", res);
       };
       
@@ -43,7 +43,7 @@ const Upload = ({setImage}) => {
         console.log(reader.result);
 
         reader.onloadend = () => {
-          setImage((prev)=>({...prev,aiData:{
+          setImage((prev)=>({...prev,isLoading:true,aiData:{
             inlineData:{
               data:reader.result.split(",")[1],
               mimeType:file.type
