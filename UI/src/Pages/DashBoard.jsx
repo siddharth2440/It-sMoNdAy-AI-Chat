@@ -7,6 +7,8 @@ import model from '../lib/gemini.js'
 import { IKImage } from 'imagekitio-react'
 // import model from "../lib/gemini.js "
 import Markdown from "react-markdown"
+import axiosInstance from '../helpers/axiosInstance.js'
+import { Try } from '@mui/icons-material'
 const DashBoard = () => {
     const [question,setQuestion] = useState("")
     const [answer,setAnswer] = useState("")
@@ -35,15 +37,6 @@ const DashBoard = () => {
     // });
 
     const add = async (text) => {
-        
-        // const prompt = "Write a story about an AI and magic"
-
-        // const result = await model.generateContent(text);
-        // const response = await result.response;
-        // const text_answer = response.text();
-        // console.log(text_answer);
-        // setAnswer(text_answer);
-
         const result = await model.generateContentStream(
             Object.entries(img.aiData).length ? [img.aiData, text] : [text]
           );
@@ -56,11 +49,16 @@ const DashBoard = () => {
           }
     }
 
-    const handleSubmit = (e) => {
+    const handleSubmit =async (e) => {
         e.preventDefault();
         const text = e.target.text.value;
         console.log(text);
         if(!text) return;
+        try {
+            await axiosInstance.get("/api/chats")
+        } catch (error) {
+            console.log(error.message);
+        }
         setQuestion(text);
         add(text);
         setImg({
