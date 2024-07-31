@@ -40,10 +40,10 @@ const Sidebar = () => {
             }
             
             {
-                !isPending && data.data!=undefined && data.data?.length > 0 ? data.data.map((ele,idx)=> {
+                !isPending && data.data!=undefined && data.data?.length > 0 ? data.data?.map((ele,idx)=> {
                     return (
                         <Link to={`/chat/${ele._id}`} key={idx+1}>
-                        <Typography key={idx+1} className='hover:bg-[#272728] transition-all duration-150 delay-75 ease-in-out py-1 text-white text-[0.6rem] w-[100%] px-4 rounded-sm cursor-pointer'>{ ele?.title || "Dummy Chat"}</Typography>
+                        <Typography className='hover:bg-[#272728] transition-all duration-150 delay-75 ease-in-out py-1 text-white text-[0.6rem] w-[100%] px-4 rounded-sm cursor-pointer'>{ ele?.title || "Dummy Chat"}</Typography>
                         </Link>        
                     )
                 }) : (

@@ -9,11 +9,16 @@ import { IKImage } from 'imagekitio-react'
 import Markdown from "react-markdown"
 import axiosInstance from '../helpers/axiosInstance.js'
 import axios from "axios"
+import { useLocation } from 'react-router-dom'
 
 const DashBoard = () => {
     const [question,setQuestion] = useState("")
     const [answer,setAnswer] = useState("")
-    
+
+    const {pathname} = useLocation()
+    const chatId = pathname.split("/")[2]
+    // console.log(chatId);
+
     const [img, setImg] = useState({
         isLoading: false,
         error: "",
@@ -73,7 +78,7 @@ const DashBoard = () => {
             aiData: {},
           })
         return;
-    }
+    }   
   return (
     <DashboardLayout>
         <Box className="bg-[#11101C] w-[100%] lg:w-[70%] mx-auto px-3 lg:py-4 pb-[3rem] h-[80vh] relative">

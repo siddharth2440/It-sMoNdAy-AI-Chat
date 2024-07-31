@@ -7,6 +7,7 @@ import Signup from './Pages/Signup.jsx'
 import RequireAuth from './Auth/RequireAuth.jsx'
 import DashboardLayout from './Layouts/DashboardLayout.jsx'
 import DashBoard from './Pages/DashBoard.jsx'
+import Notfound from './Components/Notfound.jsx'
 
 function App() {
 
@@ -20,6 +21,8 @@ function App() {
       <Route element={<RequireAuth/>}>
         <Route path='/dashboard' element={<DashBoard/>}></Route>
       </Route>
+
+      <Route path="*" element={<Notfound/>}></Route>
     </Routes>
   )
 }

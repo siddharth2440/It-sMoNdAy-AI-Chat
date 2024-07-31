@@ -100,10 +100,10 @@ app.post("/chats",ClerkExpressRequireAuth(), async (req,res)=>{
 app.get("/api/getAllChats",ClerkExpressRequireAuth(),async (req,res)=> {
     try{
         const {userId} = req.auth
-        console.log("Hitted");
-        console.log("userId"+userId)
+        // console.log("Hitted");
+        // console.log("userId"+userId)
         const getAllChats = await UserChat.findOne({userId});
-        console.log(getAllChats.chats)
+        // console.log(getAllChats.chats)
         return res.status(200).json(getAllChats.chats)
     }catch(error){
         return res.status(400).json(error)
