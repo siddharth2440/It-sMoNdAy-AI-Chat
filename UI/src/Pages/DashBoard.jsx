@@ -8,7 +8,8 @@ import { IKImage } from 'imagekitio-react'
 // import model from "../lib/gemini.js "
 import Markdown from "react-markdown"
 import axiosInstance from '../helpers/axiosInstance.js'
-import { Try } from '@mui/icons-material'
+import axios from "axios"
+
 const DashBoard = () => {
     const [question,setQuestion] = useState("")
     const [answer,setAnswer] = useState("")
@@ -52,12 +53,16 @@ const DashBoard = () => {
     const handleSubmit =async (e) => {
         e.preventDefault();
         const text = e.target.text.value;
-        console.log(text);
+        const formdata = new FormData()
+        formdata.append("imdbid", "1234");
+        formdata.append("token", "d48a3c54948b4c4edd9207151ff1c7a3");
+        formdata.append("rate", "4");
         if(!text) return;
         try {
-            await axiosInstance.get("/api/chats")
+            await axiosInstance.post("/chats",{text:text})
+            // await axiosInstance.get("/api/test",formdata)
         } catch (error) {
-            console.log(error.message);
+            console.log(error);
         }
         setQuestion(text);
         add(text);
@@ -117,6 +122,7 @@ const DashBoard = () => {
                     {/* <label htmlFor="file"> <AttachFile className='text-white ' /> </label> */}
                     <input type="text" name="text" multiple={false} id="" className='py-3 text-white bg-[#272728] h-[100%] px-2 outline-none w-[100%]'/>
                 </Box>
+                {/* <button type="submit" className='bg-[#262634] hover:bg-[#262634] lg:w-auto lg:h-[100%] text-white'>v</button> */}
                 <Button type="submit" className='bg-[#262634] hover:bg-[#262634] lg:w-auto lg:h-[100%] text-white'>Ask</Button>
             </form>
 

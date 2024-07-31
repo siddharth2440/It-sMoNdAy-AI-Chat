@@ -29,6 +29,6 @@ const chatSchema = new Schema({
 },{timestamps:true})
 
 
-const chatModel = model("chat",chatSchema)
+const chatModel = new model("chat",chatSchema)
 
 export default chatModel;

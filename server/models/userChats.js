@@ -14,10 +14,6 @@ const userChatsSchema = new Schema({
             title:{
                 type:String,
                 required:[true,"chatId is required"]
-            },
-            createdAt:{
-                type:Date,
-                default:Date.now()
             }
 
         }
@@ -25,6 +21,6 @@ const userChatsSchema = new Schema({
 },{timestamps:true})
 
 
-const userChatsModel = model("chat",userChatsSchema)
+const userChatsModel = new model("userChats",userChatsSchema)
 
 export default userChatsModel;
